@@ -19,9 +19,7 @@ public class LinkedResourceNotFoundExceptionMapper
         error.put("status", 422);
         error.put("error", "Unprocessable Entity");
         error.put("message", exception.getMessage());
-
-        return Response
-                .status(422)  // JAX-RS doesn't have a constant for 422, use int directly
+        return Response.status(422)
                 .type(MediaType.APPLICATION_JSON)
                 .entity(error)
                 .build();

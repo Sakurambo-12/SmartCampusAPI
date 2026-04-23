@@ -14,7 +14,6 @@ public class DiscoveryResource {
 
     @GET
     public Response discover() {
-
         Map<String, Object> response = new HashMap<>();
         response.put("name", "Smart Campus API");
         response.put("version", "1.0");

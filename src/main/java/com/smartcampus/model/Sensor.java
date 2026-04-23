@@ -2,8 +2,8 @@ package com.smartcampus.model;
 
 public class Sensor {
     private String id;
-    private String type;       // "Temperature", "CO2", "Occupancy"
-    private String status;     // "ACTIVE", "MAINTENANCE", "OFFLINE"
+    private String type;
+    private String status;
     private double currentValue;
     private String roomId;
 

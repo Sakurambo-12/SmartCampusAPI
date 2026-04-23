@@ -9,9 +9,8 @@ import javax.ws.rs.ext.Provider;
 import java.util.HashMap;
 import java.util.Map;
 
-@Provider  // tells Jersey "this class handles exceptions, register it automatically"
-public class RoomNotEmptyExceptionMapper
-        implements ExceptionMapper<RoomNotEmptyException> {
+@Provider
+public class RoomNotEmptyExceptionMapper implements ExceptionMapper<RoomNotEmptyException> {
 
     @Override
     public Response toResponse(RoomNotEmptyException exception) {
@@ -19,9 +18,7 @@ public class RoomNotEmptyExceptionMapper
         error.put("status", 409);
         error.put("error", "Conflict");
         error.put("message", exception.getMessage());
-
-        return Response
-                .status(Response.Status.CONFLICT)  // 409
+        return Response.status(Response.Status.CONFLICT)
                 .type(MediaType.APPLICATION_JSON)
                 .entity(error)
                 .build();

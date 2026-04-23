@@ -11,23 +11,16 @@ import java.util.logging.Logger;
 @Provider
 public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
 
-    private static final Logger LOGGER =
-            Logger.getLogger(GlobalExceptionMapper.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(GlobalExceptionMapper.class.getName());
 
     @Override
     public Response toResponse(Throwable exception) {
-        // Log the real error internally so developers can debug
         LOGGER.severe("Unhandled exception: " + exception.getMessage());
-
-        // But never expose it to the outside world
         Map<String, Object> error = new HashMap<>();
         error.put("status", 500);
         error.put("error", "Internal Server Error");
-        error.put("message",
-                "An unexpected error occurred. Please contact the administrator.");
-
-        return Response
-                .status(Response.Status.INTERNAL_SERVER_ERROR)  // 500
+        error.put("message", "An unexpected error occurred. Please contact the administrator.");
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .type(MediaType.APPLICATION_JSON)
                 .entity(error)
                 .build();

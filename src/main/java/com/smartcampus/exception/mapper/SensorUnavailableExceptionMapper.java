@@ -19,9 +19,7 @@ public class SensorUnavailableExceptionMapper
         error.put("status", 403);
         error.put("error", "Forbidden");
         error.put("message", exception.getMessage());
-
-        return Response
-                .status(Response.Status.FORBIDDEN)  // 403
+        return Response.status(Response.Status.FORBIDDEN)
                 .type(MediaType.APPLICATION_JSON)
                 .entity(error)
                 .build();
